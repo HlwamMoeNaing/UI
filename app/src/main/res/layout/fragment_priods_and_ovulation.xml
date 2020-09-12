@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".fragment.PeriodsAndOvulationFragment">
+
+   <RelativeLayout
+
+       android:id="@+id/line1"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_40adp"
+       android:orientation="horizontal"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+       <TextView
+           android:layout_marginStart="@dimen/_8adp"
+           android:layout_centerVertical="true"
+           android:id="@+id/tv_done"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/done"
+           android:textColor="#E33232"
+           android:textSize="@dimen/_15asp"
+           app:layout_constraintStart_toStartOf="parent"/>
+
+       <TextView
+           android:layout_centerVertical="true"
+         android:gravity="center"
+           android:id="@+id/tv_header"
+
+           android:textSize="@dimen/_15asp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/ovaluation_title"
+           android:textStyle="bold"
+           android:layout_centerHorizontal="true"
+
+           />
+   </RelativeLayout>
+
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:id="@+id/constraint_one"
+     android:layout_width="match_parent"
+     android:background="#FBF2F2"
+     android:padding="@dimen/_5adp"
+     android:layout_height="wrap_content"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/line1">
+     <TextView
+         android:layout_marginTop="@dimen/_8adp"
+         android:id="@+id/tv_period"
+         android:layout_marginStart="@dimen/_5adp"
+         android:layout_width="wrap_content"
+         android:textSize="@dimen/_13asp"
+         android:layout_height="wrap_content"
+         android:text="@string/period_length"
+
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"/>
+
+     <TextView
+         android:layout_marginTop="@dimen/_5adp"
+         android:id="@+id/tv_period_days"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/day"
+         android:textSize="@dimen/_13asp"
+         android:textColor="#009688"
+         app:layout_constraintTop_toTopOf="@+id/tv_period"
+         app:layout_constraintBottom_toBottomOf="@+id/tv_period"
+         app:layout_constraintEnd_toEndOf="parent"
+         android:layout_marginEnd="@dimen/_8adp"
+         />
+     <NumberPicker
+         android:visibility="gone"
+         android:theme="@style/DefaultNumberPickerTheme"
+         android:id="@+id/period_number_picker"
+         android:background="#ffffff"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/tv_period_days"/>
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FBF2F2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint_one"
+        android:id="@+id/cons">
+
+        <TextView
+            android:layout_marginTop="@dimen/_12adp"
+            android:id="@+id/tv_cycle"
+            android:layout_marginStart="@dimen/_5adp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cycle_length"
+            android:textSize="@dimen/_13asp"
+            android:layout_marginBottom="@dimen/_5adp"
+            app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/_5adp"
+            android:id="@+id/tv_cycle_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day"
+            android:textSize="@dimen/_13asp"
+            android:textColor="#009688"
+            app:layout_constraintTop_toTopOf="@+id/tv_cycle"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_cycle"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_8adp"
+            />
+        <NumberPicker
+            android:visibility="gone"
+            android:background="#ffffff"
+            android:theme="@style/DefaultNumberPickerTheme"
+            android:id="@+id/cycle_number_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_cycle"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:padding="@dimen/_5adp"
+        android:layout_width="wrap_content"
+        android:background="#FBEAEA"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_ipsum"
+        android:ellipsize="end"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cons"/>
+
+
+    <include
+
+        android:id="@+id/include"
+        layout="@layout/picker"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40adp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc"/>
+
+
+
+    
+    <NumberPicker
+        android:visibility="gone"
+        android:theme="@style/DefaultNumberPickerTheme"
+        android:id="@+id/number_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"/>
+
+    <TextView
+        android:background="#FBEAEA"
+        android:id="@+id/tv_latueal_desc"
+       android:padding="@dimen/_5adp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/lorem_ipsum"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number_picker"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

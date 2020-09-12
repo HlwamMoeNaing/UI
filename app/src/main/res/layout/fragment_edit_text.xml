@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#A38989"
+    android:layout_height="match_parent"
+    tools:context=".fragment.EditTextFragment">
+
+
+      <com.google.android.material.appbar.AppBarLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/appbar_edit_text"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/back_toolbar"
+                android:layout_width="match_parent"
+                app:title="About"
+                android:background="#ffffff"
+                android:layout_height="?attr/actionBarSize"
+                >
+                  <androidx.constraintlayout.widget.ConstraintLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/img_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tb_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edit Text"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toTopOf="@id/img_back"
+                            app:layout_constraintBottom_toBottomOf="@id/img_back"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginEnd="@dimen/_10adp"/>
+                  </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+      </com.google.android.material.appbar.AppBarLayout>
+
+
+
+      <EditText
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/appbar_edit_text"
+          android:layout_marginTop="@dimen/_25adp"
+         android:padding="@dimen/_8adp"
+          android:layout_width="match_parent"
+          android:background="@drawable/edit_text_bg"
+          android:layout_height="wrap_content"
+          android:id="@+id/edit_text"
+          android:text="@string/lorem_ipsum"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

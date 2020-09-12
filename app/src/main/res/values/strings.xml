@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">UI</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="editeTextOne">A new Cycler Start in a few day...</string>
+    <string name="hospital">hospital</string>
+    <string name="lorem_ipsum">When we are creating Android layouts, sometimes we encounter situations where the layout can change depending on the localisation. Here is a really simple example:</string>
+    <string name="warehouse">Wearefasd</string>
+    <string name="newPage">New Page</string>
+    <string name="Delete">Delete</string>
+    <string name="Post_Detail">Post Detail</string>
+    <string name="user_feeds">User Feeds</string>
+    <string name="reminder">Reminder</string>
+    <string name="On">On</string>
+    <string name="Off">Off</string>
+    <string name="period_end">Period end</string>
+    <string name="period_in_couple">Period in a couple of days</string>
+    <string name="off">Off</string>
+    <string name="period_start">Period start</string>
+    <string name="ovaluation">Ovaluation</string>
+    <string name="cycle">CYCLE</string>
+    <string name="life_style_and_mediation">LIFE STYLE AND MEDICATION</string>
+    <string name="long_weight">Log Weight</string>
+    <string name="log_sleep">Log Sleep</string>
+    <string name="add_reminder">ADD REMIDER</string>
+    <string name="on_status">ON</string>
+    <string name="off_status">OFF</string>
+    <string name="text">Text</string>
+    <string name="type_string">Type Your description</string>
+    <string name="name">Name</string>
+    <string name="time">11:00</string>
+    <string name="reminder_time">Remider Time</string>
+    <string name="select">Select</string>
+    <string name="_select">Select</string>
+    <string name="pill_name">Pill Name</string>
+    <string name="done">Done</string>
+    <string name="ovaluation_title">Periods And Ovaluation</string>
+    <string name="period_length">Period Length</string>
+    <string name="day">11 Days</string>
+    <string name="cycle_length">Cycle Length</string>
+    <string name="day_date">23/07/20, 10:26</string>
+    <string name="count">1</string>
+    <string name="luteal">Luteal</string>
+</resources>
