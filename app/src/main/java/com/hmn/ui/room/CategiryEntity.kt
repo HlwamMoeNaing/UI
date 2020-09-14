@@ -18,7 +18,8 @@ data class CategiryEntity (
 
     @ColumnInfo(name = "isAlarm")
     var isAlarm: Boolean = false,
-
+    @ColumnInfo(name = "requestCode")
+    var requestCode: Int
 
 
 

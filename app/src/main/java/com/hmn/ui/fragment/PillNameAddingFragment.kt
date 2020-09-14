@@ -20,13 +20,16 @@ import com.hmn.ui.R
 import com.hmn.ui.clas.AlarmReceiver
 import com.hmn.ui.room.CategiryEntity
 import com.hmn.ui.room.MDatabase
+
 import kotlinx.android.synthetic.main.fragment_pill_name_adding.*
+import kotlinx.android.synthetic.main.fragment_pill_name_adding.tb_done
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.time.ExperimentalTime
 
 
 class PillNameAddingFragment : Fragment() {
+
 
 
 
@@ -86,48 +89,52 @@ class PillNameAddingFragment : Fragment() {
         }
 
 
+
+
+      val calender = Calendar.getInstance()
+        val brocatIntent = Intent(requireContext(), AlarmReceiver::class.java)
+        brocatIntent.putExtra("pilltitle", edit_text_pill.text.toString())
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+
         tb_done.setOnClickListener {
 
-            if (edit_text_pill.text.toString().isNullOrBlank()  && tv_time.text.toString().isNullOrBlank() ){
-                Toast.makeText(requireContext(),"Please Fill Requird Fied",Toast.LENGTH_LONG).show()
+            if (edit_text_pill.text.toString().isNullOrBlank() ){
+                Toast.makeText(requireContext(),"Please Fill Pill Name",Toast.LENGTH_LONG).show()
+            }else if (tv_time.text.toString().isNullOrBlank() ){
+                Toast.makeText(requireContext(),"Please Select Time",Toast.LENGTH_LONG).show()
             }else{
-                val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                val intent = Intent(requireContext(), AlarmReceiver::class.java)
-                intent.putExtra("title", edit_text_pill.text)
-
-                //  intent.putExtra("todo", tvedit.text)
-                val pendingIntent = PendingIntent.getBroadcast(requireContext(), 0, intent, 0)
-
-                val calender = Calendar.getInstance()
-                calender.set(
-                    calender.get(Calendar.YEAR),
-                    calender.get(Calendar.MONTH),
-                    calender.get(Calendar.DAY_OF_MONTH),
-                    pill_time_packer.hour,
-                    pill_time_packer.minute,
-                    0
-                )
-                alarmManager.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    calender.timeInMillis,
-                    AlarmManager.INTERVAL_DAY,
-                    pendingIntent
-                )
-
                 addArray()
+
+
+
+                calender.set(Calendar.HOUR_OF_DAY, pill_time_packer.currentHour)
+                calender.set(Calendar.MINUTE, pill_time_packer.currentMinute)
+                calender.set(Calendar.SECOND, 0)
+                val requestCode =pill_time_packer.currentMinute
+                val pandingIntent = PendingIntent.getBroadcast(
+                    requireContext(),
+                    requestCode,
+                    brocatIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+                )
+
+                alarmManager.setRepeating(
+                        AlarmManager.RTC_WAKEUP,
+                        calender.timeInMillis,
+                        AlarmManager.INTERVAL_DAY,
+                        pandingIntent
+                    )
 
                 val activity = activity as MainActivity
                 activity.onSupportNavigateUp()
-
-            }
-
-
-
-
-
+                }
         }
 
+
     }
+
+
 
 
 
@@ -156,7 +163,8 @@ class PillNameAddingFragment : Fragment() {
             return
         }
 
-        arrayList.add(CategiryEntity(0, pillTitle, time, false))
+        val requestCode =pill_time_packer.currentMinute
+        arrayList.add(CategiryEntity(0, pillTitle, time, false,requestCode))
 
         MDatabase.getDatabase(requireContext()).categoryDao().insertCategory(arrayList)
     }

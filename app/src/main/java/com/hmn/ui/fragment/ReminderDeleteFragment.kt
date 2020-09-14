@@ -2,6 +2,10 @@ package com.hmn.ui.fragment
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,26 +17,42 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.hmn.ui.MainActivity
 import com.hmn.ui.R
+import com.hmn.ui.clas.AlarmReceiver
 import com.hmn.ui.room.MDatabase
+import com.hmn.ui.util.Const
+import kotlinx.android.synthetic.main.fragment_on_off_reminder_frgment.*
 import kotlinx.android.synthetic.main.fragment_one.*
 
 
-class FragmentOne : Fragment() {
+class ReminderDeleteFragment : Fragment() {
 
 
     private val ANIMATION_TRANSITION_TIME = 1000L
     private var mHiddenLinearLayoutHeight = 0
+    private var format=""
 
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+      val  pref = requireContext().getSharedPreferences(Const.SHARE_PREF_Two, 0)
+
+        val requestCode = pref.getInt("requestCode",0)
+
+
+
+
         val bundle = arguments
         val desc = bundle!!.getString("edit")!!
         edit.text = desc
 
+
         val bundle2 = arguments
         val pillTitle = bundle2?.getString("Hello")
+
+        val bundlee = arguments
+        val mId = bundlee!!.getInt("id")
+
         tv_one.text = pillTitle
         val toolbar = view.findViewById<Toolbar>(R.id.back_toolbar)
         toolbar.setNavigationIcon(R.drawable.back_24_red)
@@ -44,11 +64,23 @@ class FragmentOne : Fragment() {
 
 
         tb_delete.setOnClickListener {
-            val bundlee = arguments
-            val a = bundlee!!.getInt("id")
-            deleteRoom(a)
+
+            deleteRoom(mId)
+
 
             Toast.makeText(requireContext(),"Deleted Successfully",Toast.LENGTH_LONG).show()
+
+            val alarmManager =
+                requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(requireContext(), AlarmReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(
+                requireContext(),
+                requestCode,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+
+            alarmManager.cancel(pendingIntent)
 
             val activity = activity as MainActivity
             activity.onSupportNavigateUp()
@@ -83,7 +115,17 @@ class FragmentOne : Fragment() {
                 }
 
             } else {
+                val alarmManager =
+                    requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                val intent = Intent(requireContext(), AlarmReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(
+                    requireContext(),
+                    requestCode,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+                )
 
+                alarmManager.cancel(pendingIntent)
                 constrain_two.visibility = View.GONE
 
             }
@@ -107,7 +149,10 @@ class FragmentOne : Fragment() {
                 hour = hourOfDay
             }
 
-            tv_time.text = "$hour : $minute"
+
+
+            tv_time.text = StringBuilder().append(hour).append(" : ").append(minute)
+                .append(" ").append(format)
         }
 
 

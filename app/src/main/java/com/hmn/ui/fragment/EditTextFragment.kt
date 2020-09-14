@@ -2,7 +2,6 @@ package com.hmn.ui.fragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.hmn.ui.MainActivity
 import com.hmn.ui.R
 import com.hmn.ui.util.Const
 import kotlinx.android.synthetic.main.fragment_edit_text.*
-import kotlinx.android.synthetic.main.fragment_one.*
 
 
 class EditTextFragment : Fragment() {
@@ -42,7 +40,7 @@ class EditTextFragment : Fragment() {
 
 
                 activity.loadFragment(
-                    FragmentOne(),
+                    ReminderDeleteFragment(),
                     ac,
                     "",
                     0,

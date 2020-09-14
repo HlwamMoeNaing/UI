@@ -1,12 +1,5 @@
 package com.hmn.ui
 
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
@@ -14,13 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
-import com.hmn.ui.clas.NotifyService
-import com.hmn.ui.fragment.FragmentOne
 import com.hmn.ui.fragment.MainFragment
 import com.hmn.ui.fragment.NewFeedFragment
 import com.hmn.ui.fragment.PeriodsAndOvulationFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

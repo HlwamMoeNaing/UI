@@ -23,27 +23,21 @@ class MainFragment : Fragment(), RecyclerViewClickInterface {
 
 
     lateinit var myPreference: SharedPreferences
-
     lateinit var pref: SharedPreferences
     lateinit var ed: SharedPreferences.Editor
-
-
     private fun setData(key: String, onOffTextView: TextView, timeTextView: TextView) {
         timeTextView.visibility = View.GONE
         if (myPreference.getBoolean(key, false)) {
             onOffTextView.text = getString(R.string.on_status)
             timeTextView.visibility = View.VISIBLE
             timeTextView.text = myPreference.getString(key + "Time", "")
-            val hour = myPreference.getInt(key+"hour",0)
-            val min = myPreference.getInt(key+"min",0)
-            OnOffReminderFrgment.setReminder(requireActivity().application,hour,min)
-
-
 
         } else {
             onOffTextView.text = getString(R.string.off_status)
             timeTextView.visibility = View.GONE
         }
+
+
     }
 
 
@@ -62,14 +56,7 @@ class MainFragment : Fragment(), RecyclerViewClickInterface {
 
         first_const.setOnClickListener {
             val activity = activity as MainActivity
-            activity.loadFragment(
-                OnOffReminderFrgment(),
-                tv_title_one.text.toString(),
-                "first",
-                1,
-                "",
-                ""
-            )
+            activity.loadFragment(OnOffReminderFrgment(), tv_title_one.text.toString(), "first", 1, "", "")
             ed.putString("title", tv_title_one.text.toString()).apply()
         }
 
@@ -171,15 +158,21 @@ class MainFragment : Fragment(), RecyclerViewClickInterface {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+        //  NotificationUtils.createNotification(requireContext(),"Fsa","asdas")
+
+        return view
 
     }
 
 
     override fun onItemClick(position: Int, categiryEntity: CategiryEntity) {
         val activity = activity as MainActivity
-        activity.loadFragment(FragmentOne(), categiryEntity.title, "", categiryEntity.id, "", "")
+        activity.loadFragment(ReminderDeleteFragment(), categiryEntity.title, "", categiryEntity.id, "", "")
+        val rCode = categiryEntity.requestCode
+        ed.putInt("requestCode",rCode).apply()
         ed.putString("title", categiryEntity.title).apply()
+
 
     }
 

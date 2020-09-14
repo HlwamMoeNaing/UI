@@ -71,7 +71,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/edit_text_pill"
-                android:hint="@string/pill_name"/>
+                />
 
 
             <RelativeLayout
